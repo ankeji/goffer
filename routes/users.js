@@ -13,7 +13,7 @@ router.post('/login', function (req, res, next) {
     if (Object.keys(query).reduce((eb, e) => eb || !query[e], false) || JSON.stringify(query) == "{}") {
         res.send({code: -1, msg: "用户名和密码不能为空！"});
     } else {
-        
+
         User.find(query, (err, data) => {
             if (!err) {
                 if (data.length) {
