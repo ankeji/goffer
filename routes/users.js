@@ -16,7 +16,8 @@ router.post('/login', function (req, res, next) {
         User.find(query, (err, data) => {
             if (!err) {
                 if (data.length) {
-                    var token = createToken.createToken(query);
+                    var token = createToken.createToken(query.username);
+                    createToken.checkToken(token,query.username)
                     res.send({code: 1, msg: "登录成功！", data: {username:query.username,token: token}});
                 } else {
                     res.send({code: 0, msg: "用户名或密码不正确！"});
